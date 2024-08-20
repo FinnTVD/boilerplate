@@ -4,6 +4,7 @@ type Request = {
   api: string
   option?: any
 }
+
 export default async function getData(request: Request) {
   try {
     const res = await fetch(`${env.API}${request.api}`, {

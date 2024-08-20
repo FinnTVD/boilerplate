@@ -1,5 +1,5 @@
 {
-  "extends": ["next/core-web-vitals","prettier"],
+  "extends": ["next/core-web-vitals", "prettier"],
   "rules": {
     "react/no-unescaped-entities": "off",
     "@next/next/no-html-link-for-pages": "error",
@@ -14,11 +14,11 @@
     "space-before-blocks": ["error", "always"],
     "semi": [1, "never"],
     "linebreak-style": "off",
-    "quotes": ["error", "single"],
+    "quotes": ["warn", "single"],
     "array-bracket-spacing": "warn",
     "no-unexpected-multiline": "warn",
     "keyword-spacing": "warn",
-    "comma-spacing": "warn",
-    "arrow-spacing": "warn"
+    "comma-spacing": "warn"
+    // "arrow-spacing": "warn"
   }
 }

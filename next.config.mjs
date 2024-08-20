@@ -1,4 +1,11 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
+const nextConfig = {
+  images: {
+    formats: ['image/webp'],
+    minimumCacheTTL: 3600,
+    remotePatterns: [{protocol: 'https', hostname: '**'}],
+  },
+  reactStrictMode: false,
+}
 
-export default nextConfig;
+export default nextConfig

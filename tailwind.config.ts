@@ -3,13 +3,14 @@ import type {Config} from 'tailwindcss'
 const config = {
   darkMode: ['class'],
   content: [
-    './pages/**/*.{ts,tsx}',
-    './components/**/*.{ts,tsx}',
-    './app/**/*.{ts,tsx}',
-    './src/**/*.{ts,tsx}',
+    './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/**/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   prefix: '',
   theme: {
+    container: {},
     screens: {
       lg: '1025px',
       sm: '640px',
@@ -18,16 +19,23 @@ const config = {
       tablet: {min: '640px', max: '1024px'},
     },
     extend: {
+      fontFamily: {
+        sackers: ['var(--font-scakers)'],
+        karla: ['var(--font-karla)'],
+        beautique: ['var(--font-beautique)'],
+      },
       colors: {
+        primary: '#313131',
+        background: '#FFFDF8',
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
-        background: 'hsl(var(--background))',
+        // background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
-        primary: {
-          DEFAULT: 'hsl(var(--primary))',
-          foreground: 'hsl(var(--primary-foreground))',
-        },
+        // primary: {
+        //   DEFAULT: 'hsl(var(--primary))',
+        //   foreground: 'hsl(var(--primary-foreground))',
+        // },
         secondary: {
           DEFAULT: 'hsl(var(--secondary))',
           foreground: 'hsl(var(--secondary-foreground))',

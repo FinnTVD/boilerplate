@@ -1,7 +1,7 @@
 import {NextResponse, userAgent} from 'next/server'
 import type {NextRequest} from 'next/server'
-const defaultLocale = 'en'
-let locales = ['en', 'fr', 'it']
+// const defaultLocale = 'en'
+// let locales = ['en', 'my']
 
 export function middleware(request: NextRequest) {
   const nextUrl = request.nextUrl
@@ -16,50 +16,50 @@ export function middleware(request: NextRequest) {
       : 'desktop'
   nextUrl.searchParams.set('viewport', viewport)
   nextUrl.searchParams.set('pathname', pathname)
+  return NextResponse.rewrite(nextUrl)
+  // if (
+  //   ['/manifest.json', '/favicon.ico', '/robots.txt', '/sitemap.xml'].includes(
+  //     pathname,
+  //   )
+  // )
+  //   return
 
-  if (
-    ['/manifest.json', '/favicon.ico', '/robots.txt', '/sitemap.xml'].includes(
-      pathname,
-    )
-  )
-    return
+  // if (
+  //   pathname.startsWith(`/${defaultLocale}/`) ||
+  //   pathname === `/${defaultLocale}`
+  // ) {
+  //   return NextResponse.redirect(
+  //     new URL(
+  //       pathname.replace(
+  //         `/${defaultLocale}`,
+  //         pathname === `/${defaultLocale}` ? '/' : '',
+  //       ),
+  //       request.url,
+  //     ),
+  //   )
+  // }
 
-  if (
-    pathname.startsWith(`/${defaultLocale}/`) ||
-    pathname === `/${defaultLocale}`
-  ) {
-    return NextResponse.redirect(
-      new URL(
-        pathname.replace(
-          `/${defaultLocale}`,
-          pathname === `/${defaultLocale}` ? '/' : '',
-        ),
-        request.url,
-      ),
-    )
-  }
+  // const pathnameIsMissingLocale = locales.every(
+  //   (locale) =>
+  //     !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`,
+  // )
 
-  const pathnameIsMissingLocale = locales.every(
-    (locale) =>
-      !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`,
-  )
+  // if (pathnameIsMissingLocale) {
+  //   if (nextUrl.searchParams) {
+  //     const newUrl = new URL(`/${defaultLocale}${pathname}`, request.url)
+  //     newUrl.search = nextUrl.searchParams.toString()
+  //     return NextResponse.rewrite(newUrl)
+  //   }
 
-  if (pathnameIsMissingLocale) {
-    if (nextUrl.searchParams) {
-      const newUrl = new URL(`/${defaultLocale}${pathname}`, request.url)
-      newUrl.search = nextUrl.searchParams.toString()
-      return NextResponse.rewrite(newUrl)
-    }
-
-    return NextResponse.rewrite(
-      new URL(`/${defaultLocale}${pathname}`, request.url),
-    )
-  }
-  const newUrl = new URL(`${pathname}`, request.url)
-  newUrl.search = nextUrl.searchParams.toString()
-  return NextResponse.rewrite(newUrl)
+  //   return NextResponse.rewrite(
+  //     new URL(`/${defaultLocale}${pathname}`, request.url),
+  //   )
+  // }
+  // const newUrl = new URL(`${pathname}`, request.url)
+  // newUrl.search = nextUrl.searchParams.toString()
+  // return NextResponse.rewrite(newUrl)
 }
 
 export const config = {
-  matcher: ['/((?!api|_next/static|_next/image|images|favicon.ico).*)'],
+  matcher: ['/((?!api|_next/static|_next/image|images|videos|favicon.ico).*)'],
 }
